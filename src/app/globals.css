@@ -3,3 +3,12 @@
 
 @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary: #e53935;
+  --color-primary-hover: #d32f2f;
+  --color-secondary: #37474f;
+  --color-accent: #ffb300;
+  --color-text: #212121;
+  --color-background: #f9fafb;
+}
