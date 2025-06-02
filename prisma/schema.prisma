@@ -1,0 +1,37 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
+}
+
+enum Status_Booking {
+    pending
+    paid
+    failed
+}
+
+model fields {
+    id      String    @id @default(uuid())
+    name    String
+    price   Int
+    Booking Booking[]
+}
+
+model Booking {
+    id         String         @id @default(uuid())
+    name       String
+    phone      String
+    fieldId    String
+    field      fields         @relation(fields: [fieldId], references: [id])
+    date       DateTime
+    timeStart  DateTime
+    timeEnd    DateTime
+    totalPrice Int
+    status     Status_Booking
+    OrderId    String
+    createdAt  DateTime       @default(now())
+}
