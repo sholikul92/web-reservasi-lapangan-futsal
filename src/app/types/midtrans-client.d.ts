@@ -1,4 +1,4 @@
-declare module "midtrans-client" {
+declare module 'midtrans-client' {
   interface SnapOptions {
     isProduction: boolean;
     serverKey: string;
@@ -19,7 +19,10 @@ declare module "midtrans-client" {
 
   class Snap {
     constructor(options: SnapOptions);
-    createTransaction(param: TransactionParameter): Promise<{ redirect_url: string }>;
+    createTransaction(param: TransactionParameter): Promise<{
+      token: string;
+      redirect_url: string;
+    }>;
   }
 
   export { Snap };
