@@ -200,8 +200,9 @@ export default function FormBooking() {
           disabled={isSubmitting}
           color='primary'
           className='cursor-pointer'
+          isLoading={isSubmitting}
         >
-          {isSubmitting ? '...' : 'Booking Sekarang'}
+          Booking
         </Button>
       </Form>
     </>
