@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     });
     console.log("data dari db", bookings);
 
-    const bookedSlots = bookings.map((b) => {
+    const bookedSlots = bookings.map((b: { bookingStart: Date }) => {
       return DateTime.fromJSDate(new Date(b.bookingStart)).setZone("Asia/Jakarta").toFormat("HH:00");
     });
     console.log("waktu dari db => ", bookedSlots);
