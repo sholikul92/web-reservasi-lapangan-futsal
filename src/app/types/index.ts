@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { schemaCekSchedule, schemaFormBooking, schemaSignIn, schemaSignUp } from "../lib/schema";
-import { $Enums } from "@prisma/client";
+import { PaymentStatus } from "@prisma/client";
 
 export type SignInFormSchema = z.infer<typeof schemaSignIn>;
 export type RegisterSchema = z.infer<typeof schemaSignUp>;
@@ -32,7 +32,7 @@ export type Transactions = {
   userId: string;
   orderId: string;
   field: NameField;
-  status: $Enums.PaymentStatus;
+  status: PaymentStatus;
   totalAmount: number;
   bookingStart: Date;
   bookingEnd: Date;
