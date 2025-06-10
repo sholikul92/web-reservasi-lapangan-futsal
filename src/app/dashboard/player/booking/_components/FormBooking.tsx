@@ -48,7 +48,15 @@ export default function FormBooking() {
   };
 
   const handleInputDuration = (e: number | ChangeEvent<HTMLInputElement>) => {
-    const value: number = e.target.valueAsNumber;
+    let value: number;
+
+    // Cek apakah e adalah number atau ChangeEvent
+    if (typeof e === "number") {
+      value = e;
+    } else {
+      value = e.target.valueAsNumber;
+    }
+
     if (!Number.isNaN(value)) {
       setValue("durationHours", value);
       const total = (fieldSelect?.price || 0) * value;
