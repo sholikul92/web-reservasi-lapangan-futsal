@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOption } from "@/app/api/auth/[...nextauth]/route";
+import { authOption } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Sidebar from "./_components/Sidebar";
 import { BookingLineChart } from "./_components/BookingChart";
