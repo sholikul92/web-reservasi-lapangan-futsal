@@ -24,6 +24,7 @@
     "bcrypt": "^6.0.0",
     "chart.js": "^4.4.9",
     "framer-motion": "^12.15.0",
+    "html2pdf.js": "^0.10.3",
     "luxon": "^3.6.1",
     "midtrans-client": "^1.4.3",
     "next": "15.3.3",

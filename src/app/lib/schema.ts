@@ -40,3 +40,8 @@ export const schemaFormBooking = z.object({
   durationHours: z.number().int().positive(),
   totalAmount: z.string(),
 });
+
+export const schemaCekSchedule = z.object({
+  fieldId: z.string().cuid(),
+  date: z.any(),
+});
