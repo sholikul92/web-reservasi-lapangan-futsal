@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { schemaCekSchedule, schemaFormBooking, schemaSignIn, schemaSignUp } from "../lib/schema";
-import { PaymentStatus } from "@prisma/client";
 
 export type SignInFormSchema = z.infer<typeof schemaSignIn>;
 export type RegisterSchema = z.infer<typeof schemaSignUp>;
@@ -26,6 +25,8 @@ type NameField = {
   name: string;
   price: number;
 };
+
+type PaymentStatus = "PENDING" | "APPROVED" | "REJECTED";
 
 export type Transactions = {
   id: string;
