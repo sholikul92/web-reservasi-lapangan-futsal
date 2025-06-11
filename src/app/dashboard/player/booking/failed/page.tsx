@@ -9,7 +9,7 @@ export default function BookingFailedPage() {
         <Image src='/ilustration/failed-payment.svg' alt='failed payment' width={300} height={300} priority />
         <p className='font-semibold text-xl'>Transaksi Gagal!</p>
         <p>lakukan transaksi ulang</p>
-        <Link href='/dashboard/player/transaction' aria-label='link back to dashboard'>
+        <Link href='/dashboard/player/history/transaction' aria-label='link back to dashboard'>
           <Button color='primary'>Ke halaman transaksi</Button>
         </Link>
       </div>
