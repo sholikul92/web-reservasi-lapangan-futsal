@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     const body: payload = await req.json();
 
     const { fieldId, date } = body;
-    if (!fieldId || !date) return NextResponse.json({ message: "kolom tidak boeh kosong" }, { status: 400 });
+    if (!fieldId || !date) return NextResponse.json({ message: "kolom tidak boleh kosong" }, { status: 400 });
 
     const parsedDate = new Date(date);
     if (isNaN(parsedDate.getTime())) {
@@ -21,12 +21,7 @@ export async function POST(req: Request) {
     }
 
     const startOfDay = DateTime.fromISO(date, { zone: "Asia/Jakarta" }).startOf("day").toUTC().toJSDate();
-
     const endOfDay = DateTime.fromISO(date, { zone: "Asia/Jakarta" }).endOf("day").toUTC().toJSDate();
-
-    console.log("startOfDay WIB (UTC):", startOfDay.toISOString());
-    console.log("endOfDay WIB (UTC):", endOfDay.toISOString());
-    console.log("date:", date);
 
     const bookings = await prisma.booking.findMany({
       where: {
@@ -41,14 +36,22 @@ export async function POST(req: Request) {
       },
       select: {
         bookingStart: true,
+        bookingEnd: true,
       },
     });
-    console.log("data dari db", bookings);
 
-    const bookedSlots = bookings.map((b: { bookingStart: Date }) => {
-      return DateTime.fromJSDate(new Date(b.bookingStart)).setZone("Asia/Jakarta").toFormat("HH:00");
-    });
-    console.log("waktu dari db => ", bookedSlots);
+    const bookedSlots: string[] = [];
+
+    for (const booking of bookings) {
+      const start = DateTime.fromJSDate(booking.bookingStart).setZone("Asia/Jakarta");
+      const end = DateTime.fromJSDate(booking.bookingEnd).setZone("Asia/Jakarta");
+
+      let current = start.startOf("hour");
+      while (current < end) {
+        bookedSlots.push(current.toFormat("HH:00"));
+        current = current.plus({ hours: 1 });
+      }
+    }
 
     const allSlots = generateTimeSlots(10, 24);
     const availableSlots = allSlots.filter((slot) => !bookedSlots.includes(slot));
