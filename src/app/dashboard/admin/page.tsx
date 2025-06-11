@@ -1,19 +1,10 @@
-import { getServerSession } from "next-auth";
-import { authOption } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import Sidebar from "./_components/Sidebar";
 import { BookingLineChart } from "./_components/BookingChart";
 import { PopularFieldPieChart } from "./_components/PopularFieldChart";
 
 export default async function DashboardAdminPage() {
-  const session = await getServerSession(authOption);
-
-  if (!session) return redirect("/auth/login");
-  if (session.user.role !== "superadmin") return redirect("/dashboard/player");
   return (
-    <section>
-      <Sidebar />
-      <div className='ml-8 md:ml-18 grid grid-cols-1 md:grid-cols-2 justify-center md:gap-8'>
+    <section className='p-4 flex justify-center items-center min-h-screen '>
+      <div className='ml-8 md:ml-16 grid grid-cols-1 md:grid-cols-2 md:gap-8 w-full'>
         <div>
           <BookingLineChart />
         </div>
