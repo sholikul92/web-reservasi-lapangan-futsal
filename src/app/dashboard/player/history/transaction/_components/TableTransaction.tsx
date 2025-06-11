@@ -66,11 +66,19 @@ export default function TabelTransaction() {
                 <TableCell>{bookingDate}</TableCell>
                 <TableCell>{jam}</TableCell>
                 <TableCell>{transaction.durationHours} Jam</TableCell>
-                <TableCell>{transaction.status}</TableCell>
+                <TableCell
+                  className={`
+                  ${transaction.status === "APPROVED" && "text-success"}
+                  ${transaction.status === "PENDING" && "text-warning"}
+                  ${transaction.status === "REJECTED" && "text-primary"}
+                  `}
+                >
+                  {transaction.status}
+                </TableCell>
                 <TableCell>
-                  <div className='flex gap-2 justify-start cursor-pointer'>
+                  <div className='flex justify-start cursor-pointer'>
                     <Link href={transaction.paymentUrl} aria-label='Url Payment' target='_blank'>
-                      <Button color='warning' className={`${transaction.status === "PENDING" ? "block" : "hidden"}`}>
+                      <Button color='warning' className={`${transaction.status === "APPROVED" && "hidden"}`}>
                         Bayar
                       </Button>
                     </Link>
