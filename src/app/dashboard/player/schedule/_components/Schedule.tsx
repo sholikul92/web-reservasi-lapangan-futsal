@@ -1,6 +1,7 @@
 "use client";
 import { generateTimeSlots } from "@/app/utils/generateTimeSlot";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@heroui/react";
+import Link from "next/link";
 
 export default function Schedule({ isOpen, onOpenChange, availableSlots }: { isOpen: boolean; onOpenChange: () => void; availableSlots: string[] }) {
   const timeSlots = generateTimeSlots(10, 24);
@@ -36,9 +37,11 @@ export default function Schedule({ isOpen, onOpenChange, availableSlots }: { isO
               <Button color='danger' variant='light' onPress={onClose}>
                 Close
               </Button>
-              <Button color='primary' onPress={onClose}>
-                Booking
-              </Button>
+              <Link href='/dashboard/player/booking'>
+                <Button color='primary' onPress={onClose}>
+                  Booking
+                </Button>
+              </Link>
             </ModalFooter>
           </>
         )}
