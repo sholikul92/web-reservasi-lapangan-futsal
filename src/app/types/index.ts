@@ -40,3 +40,27 @@ export type Transactions = {
   durationHours: number;
   paymentUrl: string;
 };
+
+export type StatusPlaying = "FINISHED" | "INPROGGRESS" | "NOTPLAYING";
+
+export type Bookings = {
+  id: string;
+  userId: string;
+  fieldId: string;
+  bookingStart: Date;
+  bookingEnd: Date;
+  durationHours: number;
+  totalAmount: number;
+  status: PaymentStatus;
+  playingStatus: StatusPlaying;
+  paymentUrl: string;
+  orderId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  field: {
+    name: string;
+  };
+  user: {
+    name: string;
+  };
+};
