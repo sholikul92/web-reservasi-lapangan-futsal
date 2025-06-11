@@ -46,10 +46,17 @@ model Booking {
   durationHours Int
   totalAmount   Int
   status        PaymentStatus
+  playingStatus PlayingStatus @default(NOTPLAYING)
   paymentUrl    String?
   orderId       String        @unique
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
+}
+
+enum PlayingStatus {
+  FINISHED
+  INPROGGRESS
+  NOTPLAYING
 }
 
 enum PaymentStatus {
