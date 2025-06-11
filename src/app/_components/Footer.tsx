@@ -1,7 +1,8 @@
 import { LuInstagram } from "react-icons/lu";
-import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 import { SiGooglemaps } from "react-icons/si";
 import { FaPhone } from "react-icons/fa6";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -10,35 +11,29 @@ export default function Footer() {
         <div className='space-y-4'>
           <h1 className='text-2xl font-semibold'>Tentang Kami</h1>
           <p>
-            <span className='font-semibold'>Unipi Futsal</span> adalah platform pemesanan lapangan futsal yang memudahkan kamu untuk booking kapan
-            saja dan di mana saja. Cepat, praktis, dan tanpa ribet!
+            <span className='font-semibold'>Rajawali Futsal Arena</span> adalah platform pemesanan lapangan futsal yang memudahkan kamu untuk booking
+            kapan saja dan di mana saja. Cepat, praktis, dan tanpa ribet!
           </p>
           <div className='flex gap-4 text-2xl'>
-            <a href='#'>
+            <Link href='https://www.instagram.com/s.ardian642' target='_blank'>
               <LuInstagram />
-            </a>
-            <a href='#'>
-              <FaLinkedin />
-            </a>
-            <a href='#'>
+            </Link>
+            <Link href='https://wa.me/6283807201787' target='_blank'>
               <FaWhatsapp />
-            </a>
+            </Link>
           </div>
         </div>
         <div className='space-y-4'>
           <h1 className='text-2xl font-semibold'>Link Cepat</h1>
           <ul className='space-y-2'>
             <li>
-              <a href='#'>Beranda</a>
+              <Link href='#'>Beranda</Link>
             </li>
             <li>
-              <a href='#fields'>Lapangan</a>
+              <Link href='#fields'>Lapangan</Link>
             </li>
             <li>
-              <a href='#form-cek-jadwal'>Cek Jadwal</a>
-            </li>
-            <li>
-              <a href='#'>Booking</a>
+              <Link href='/dashboard/player/booking'>Booking</Link>
             </li>
           </ul>
         </div>
@@ -55,7 +50,9 @@ export default function Footer() {
         </div>
       </div>
       <div className='pt-4 mt-8 border-t md:mx-28 border-t-white/50'>
-        <p className='text-center'>&copy;2025 UnipiFutsal - All Rights Reserved</p>
+        <p className='text-center'>
+          &copy;2025 <span className='font-semibold'>Rajawali Futsal Arena</span> - All Rights Reserved
+        </p>
       </div>
     </footer>
   );

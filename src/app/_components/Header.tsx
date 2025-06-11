@@ -25,7 +25,7 @@ export default function Header() {
       <nav className='flex flex-col gap-2 text-black md:flex-row md:justify-around'>
         <div className='flex items-center justify-between md:justify-start'>
           <h1 className={`text-xl font-semibold ${!scrolled && "text-white"}`}>
-            <span className='text-primary'>Unipi</span>Futsal
+            <span className='text-primary'>Rajawali</span>FutsalArena
           </h1>
           <HiOutlineMenuAlt1 className='text-2xl text-primary md:hidden' onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
