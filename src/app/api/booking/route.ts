@@ -28,6 +28,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "waktu sudah ada yang booking" }, { status: 409 });
     }
 
+    const user = await prisma.user.findFirst({
+      where: {
+        id: userId,
+      },
+      select: {
+        name: true,
+        email: true,
+      },
+    });
+
+    if (!user) return NextResponse.json({ message: "User not found" }, { status: 404 });
+
     const start_time = DateTime.now().setZone("Asia/Jakarta").plus({ hours: 24 }).toFormat("yyyy-MM-dd HH:mm:ss ZZZZ");
 
     const orderId = `ORDER-${Date.now()}`;
@@ -37,10 +49,17 @@ export async function POST(request: Request) {
         order_id: orderId,
         gross_amount: Number(totalAmount),
       },
+      customer_details: {
+        first_name: user.name,
+        email: user.email,
+      },
       expiry: {
         start_time,
         unit: "hour",
         duration: 1,
+      },
+      callbacks: {
+        finish: "http://rajawalifutsal.vercel.app/dashboard/player/booking/success",
       },
     };
 
